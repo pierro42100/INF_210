@@ -7,7 +7,7 @@ import javax.ejb.Remote;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Offreemploi;
 
 /**
- * Interface du service gérant les entreprises.
+ * Interface du service gérant les offres.
  * @author Philippe TANGUY
  */
 @Remote
@@ -15,15 +15,15 @@ public interface IServiceOffreEmploi
 {
 	//-----------------------------------------------------------------------------
 	/**
-	 * Obtention d'une entreprise suivant son id.
-	 * @param id id de l'entreprise.
-	 * @return l'instance de l'entreprise.
+	 * Obtention d'une offre suivant son id.
+	 * @param id id de l'offre.
+	 * @return l'instance de l'offre.
 	 */
 	//-----------------------------------------------------------------------------
 	public Offreemploi getOffreEmploi(int id);
 	/**
-	 * Obtention de la liste de toutes les entreprises référencées dans le système.
-	 * @return la liste des candidatures dans une {@code List<Entreprise>}.
+	 * Obtention de la liste de toutes les offres référencées dans le système.
+	 * @return la liste des candidatures dans une {@code List<offre>}.
 	 */
 	public List<Offreemploi> listeDesOffresEmploi();
 	//-----------------------------------------------------------------------------

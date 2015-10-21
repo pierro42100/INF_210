@@ -21,8 +21,7 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Cabinet de recrutement : liste des entreprises
-	référencées</title>
+<title>Cabinet de recrutement : liste offres référencées</title>
 <link rel="stylesheet" href="styles.css" type="text/css" />
 </head>
 
@@ -37,6 +36,7 @@
 			<th>Niveau qualification</th>
 			<th>Date dépot</th>
 			<th>Liste candidats</th> 
+			
 		</tr>
 		<%
 			List<Offreemploi> oe = serviceOffreEmploi.listeDesOffresEmploi();
@@ -49,6 +49,7 @@
 			<td><%=oeTemp.getNiveauqualif().getIntitule() %></a></td>
 			<td><%=oeTemp.getDateDepot() %></a></td>
 			<td>Liste candidats - TODO</a></td>
+			<th><a href="infos_offre.jsp?id=<%=oeTemp.getId()%>">Plus d'informations</a></th>
 		</tr>
 		<%
 			}
