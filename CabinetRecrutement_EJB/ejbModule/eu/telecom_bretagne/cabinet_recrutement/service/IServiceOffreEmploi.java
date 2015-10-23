@@ -40,7 +40,7 @@ public interface IServiceOffreEmploi
 	/**
 	 * 
 	 */
-	public void updateOffreEmploi();
+	public void updateOffreEmploi(int idOffre, String titre, String desc, String profil);
 	
 		
 	

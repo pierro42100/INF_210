@@ -58,9 +58,16 @@ public class ServiceOffreEmploi implements IServiceOffreEmploi
 		
 	}
 	@Override
-	public void updateOffreEmploi() {
+	public void updateOffreEmploi(int idOffre, String titre, String desc, String profil) {
 		// TODO Auto-generated method stub
+		// TODO Secteurs et Niveaux
 		
+		Offreemploi oe = offreEmploiDAO.findById(idOffre);
+		oe.setTitre(titre);
+		oe.setDescriptifMission(desc);
+		oe.setProfilRecherche(profil);
+		
+		offreEmploiDAO.update(oe);
 	}
 	
 		

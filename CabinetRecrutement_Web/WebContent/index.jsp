@@ -48,11 +48,12 @@
 	<ul>
 		<li><a href="liste_offres.jsp">Lister les offres d'emploi</a></li>
 		<% if(session.getAttribute("utilisateur") != null){
+			Entreprise e = (Entreprise) utilisateur;
 		%>
 		<ul>
 			<h4>Mode connecté entreprise</h4>
 			<li><a href="referencer_offre.jsp">Référencer une offre d'emploi</a></li>
-			<li><a href="">Mettre à jour une offre d'emploi</a></li>
+			<li><a href="mettre_a_jour_offre.jsp?idEntreprise=<%= e.getId()%>">Modifier une offre d'emploi</a></li>
 			<li><a href="">Supprimer une offre d'emploi</a></li>
 		</ul>
 		<%} %>
