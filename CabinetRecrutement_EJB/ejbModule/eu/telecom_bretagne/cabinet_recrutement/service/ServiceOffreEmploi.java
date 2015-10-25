@@ -1,5 +1,6 @@
 package eu.telecom_bretagne.cabinet_recrutement.service;
 
+import java.util.HashSet;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -8,9 +9,11 @@ import javax.ejb.Stateless;
 
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.NiveauQualificationDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.dao.OffreEmploiDAO;
+import eu.telecom_bretagne.cabinet_recrutement.data.dao.SecteurActiviteDAO;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Niveauqualif;
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Offreemploi;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.Secteuractivite;
 
 /**
  * Session Bean implementation class IServiceCnadidature
@@ -23,6 +26,8 @@ public class ServiceOffreEmploi implements IServiceOffreEmploi
 {
 	@EJB
 	private OffreEmploiDAO offreEmploiDAO;
+	@EJB
+	private SecteurActiviteDAO secteurActiviteDAO;
 	@EJB
 	private NiveauQualificationDAO niveauQualifDAO;
 	//-----------------------------------------------------------------------------
@@ -40,16 +45,27 @@ public class ServiceOffreEmploi implements IServiceOffreEmploi
 		return offres;
 	}
 	@Override
-	public int addOffreEmploi(String titreString, String descriptifString, String profilString, String secteurString, int niveauId) {
+	public int addOffreEmploi(String titreString, String descriptifString, String profilString, HashSet<Secteuractivite> secteurs, int niveauId) {
 		// TODO Auto-generated method stub
 		Offreemploi o = new Offreemploi();
 		o.setTitre(titreString);
 		o.setDescriptifMission(descriptifString);
-		o.setProfilRecherche(profilString);
+		o.setProfilRecherche(profilString);		
 		Niveauqualif niveau = niveauQualifDAO.findById(niveauId);	
-		
 		o.setNiveauqualif(niveau);
+		
+		o.setSecteuractivites(new HashSet<Secteuractivite>());
+		
+		for(Secteuractivite sect : secteurs){
+			o.getSecteuractivites().add(sect);
+			sect.getOffreemplois().add(o);
+		}
+		
 		offreEmploiDAO.persist(o);
+		for(Secteuractivite sect : secteurs){
+			secteurActiviteDAO.update(sect);
+		}
+		
 		return o.getId();
 	}
 	@Override

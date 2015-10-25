@@ -65,7 +65,7 @@
 	
 	<h3>Candidatures</h3>
 	<ul>
-		<li><a href="">Liste des candidatures</a></li>
+		<li><a href="liste_candidatures.jsp">Liste des candidatures</a></li>
 		<li><a href="">Référencer une candidature</a></li>
 		<ul>
 			<h4>Mode connecté utilisateur</h4>

@@ -98,17 +98,45 @@ create table  candidature_secteur
 insert into  entreprise  values (nextval('entreprise_id_seq'),'Télécom Bretagne','Télécom Bretagne est une grande école pionnière en formation, en recherche et en entrepreneuriat.','Plouzané');
 insert into  entreprise  values (nextval('entreprise_id_seq'),'ENIB','Une école d''ingénieur juste à côté...','Plouzané');
 
-insert into niveauqualif values (nextval('niveauqualif_id_seq'),'Ingénieur breton');
-insert into niveauqualif values (nextval('niveauqualif_id_seq'),'Ingénieur stéphanois');
+insert into niveauqualif values (nextval('niveauqualif_id_seq'), 'CAP/BEP');
+insert into niveauqualif values (nextval('niveauqualif_id_seq'), 'Bac');
+insert into niveauqualif values (nextval('niveauqualif_id_seq'), 'Bac+3');
+insert into niveauqualif values (nextval('niveauqualif_id_seq'), 'Bac+5');
+insert into niveauqualif values (nextval('niveauqualif_id_seq'), 'Doctorat');
 
-insert into candidature values (nextval('candidature_id_seq'),'Herzog', 'Cedric',DATE '1994-05-17','blabla','16 rue de la roue qui chante','qsdqsd@dadazd.com','dcsdoijsdc cjdcpjspcj',DATE '2015-05-05',1);
-insert into candidature values (nextval('candidature_id_seq'),'Chovelon', 'Pierrick',DATE '1994-05-17','blabla','16 rue de la roue qui fredonne','qsdqsd@dadazd.fr','dcsdoijsdc ffffff',DATE '2015-08-05',2);
+insert into candidature values (nextval('candidature_id_seq'),'Herzog', 'Cedric',DATE '1994-05-17','blabla','16 rue de la roue qui chante','qsdqsd@dadazd.com','dcsdoijsdc cjdcpjspcj',DATE '2015-05-05',4);
+insert into candidature values (nextval('candidature_id_seq'),'Chovelon', 'Pierrick',DATE '1994-05-17','blabla','16 rue de la roue qui fredonne','qsdqsd@dadazd.fr','dcsdoijsdc ffffff',DATE '2015-08-05',4);
 
 insert into offreemploi values (nextval('offreemploi_id_seq'),'Ingénieur techno-commercial en Bretagne','Vous serez...','du texte',DATE '2015-06-06', 1,1);
 insert into offreemploi values (nextval('offreemploi_id_seq'),'Ingénieur techno-commercial dans la Loire','Vous serez 2 ...','du texte 2',DATE '2015-07-07', 2,2);
 
-insert into secteuractivite values (nextval('secteuractivite_id_seq'),'Agriculture');
+insert into secteuractivite values (nextval('secteuractivite_id_seq'),'Achat/Logistique');
+insert into secteuractivite values (nextval('secteuractivite_id_seq'),'Assistanat/Secrétariat');
+insert into secteuractivite values (nextval('secteuractivite_id_seq'),'Agrivulture');
+insert into secteuractivite values (nextval('secteuractivite_id_seq'),'Agroalimentaire');
+insert into secteuractivite values (nextval('secteuractivite_id_seq'),'Assurance');
+insert into secteuractivite values (nextval('secteuractivite_id_seq'),'Audit/Conseil/Expertises');
+insert into secteuractivite values (nextval('secteuractivite_id_seq'),'BTP/Immobilier');
+insert into secteuractivite values (nextval('secteuractivite_id_seq'),'Commercial');
+insert into secteuractivite values (nextval('secteuractivite_id_seq'),'Communication/Art/Média/Mode');
+insert into secteuractivite values (nextval('secteuractivite_id_seq'),'Comptabilité');
+insert into secteuractivite values (nextval('secteuractivite_id_seq'),'Direction Générérale/Executive');
+insert into secteuractivite values (nextval('secteuractivite_id_seq'),'Distribution/Commerce');
+insert into secteuractivite values (nextval('secteuractivite_id_seq'),'Electronique/Microélectronique');
+insert into secteuractivite values (nextval('secteuractivite_id_seq'),'Environnement');
+insert into secteuractivite values (nextval('secteuractivite_id_seq'),'Finance/Banque');
+insert into secteuractivite values (nextval('secteuractivite_id_seq'),'Formation/Enseignement');
+insert into secteuractivite values (nextval('secteuractivite_id_seq'),'Hotellerie/Restauration/Tourisme');
+insert into secteuractivite values (nextval('secteuractivite_id_seq'),'Industrie/Ingénierie/Production');
 insert into secteuractivite values (nextval('secteuractivite_id_seq'),'Informatique');
+insert into secteuractivite values (nextval('secteuractivite_id_seq'),'Juridique/Fiscal/Droit');
+insert into secteuractivite values (nextval('secteuractivite_id_seq'),'Marketing');
+insert into secteuractivite values (nextval('secteuractivite_id_seq'),'Public/Parapublic');
+insert into secteuractivite values (nextval('secteuractivite_id_seq'),'Ressourcers Humaines');
+insert into secteuractivite values (nextval('secteuractivite_id_seq'),'Santé/Social/Biologie/Humanitaire');
+insert into secteuractivite values (nextval('secteuractivite_id_seq'),'Télécom/Réseaux');
+
+
 
 insert into candidature_secteur values (1,1);
 insert into candidature_secteur values (2,2);

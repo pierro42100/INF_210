@@ -1,8 +1,11 @@
 package eu.telecom_bretagne.cabinet_recrutement.data.model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -48,8 +51,8 @@ public class Candidature implements Serializable {
 	private Niveauqualif niveauqualif;
 
 	//bi-directional many-to-many association to Secteuractivite
-	@ManyToMany(mappedBy="candidatures")
-	private Set<Secteuractivite> secteuractivites;
+	@ManyToMany(mappedBy="candidatures", fetch=FetchType.EAGER)
+	private HashSet<Secteuractivite> secteuractivites = new HashSet<Secteuractivite>();
 
 	public Candidature() {
 	}
@@ -134,12 +137,12 @@ public class Candidature implements Serializable {
 		this.niveauqualif = niveauqualif;
 	}
 
-	public Set<Secteuractivite> getSecteuractivites() {
+	public HashSet<Secteuractivite> getSecteuractivites() {
 		return this.secteuractivites;
 	}
 
 	public void setSecteuractivites(Set<Secteuractivite> secteuractivites) {
-		this.secteuractivites = secteuractivites;
+		this.secteuractivites = (HashSet<Secteuractivite>) secteuractivites;
 	}
 
 }

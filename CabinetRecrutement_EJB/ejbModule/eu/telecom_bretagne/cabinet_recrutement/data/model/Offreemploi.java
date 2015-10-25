@@ -1,8 +1,11 @@
 package eu.telecom_bretagne.cabinet_recrutement.data.model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -33,8 +36,8 @@ public class Offreemploi implements Serializable {
 	private String titre;
 
 	//bi-directional many-to-many association to Secteuractivite
-	@ManyToMany(mappedBy="offreemplois")
-	private Set<Secteuractivite> secteuractivites;
+	@ManyToMany(mappedBy="offreemplois", fetch=FetchType.EAGER)
+	private HashSet<Secteuractivite> secteuractivites = new HashSet<Secteuractivite>();
 
 	//bi-directional many-to-one association to Entreprise
 	@ManyToOne
@@ -94,7 +97,7 @@ public class Offreemploi implements Serializable {
 	}
 
 	public void setSecteuractivites(Set<Secteuractivite> secteuractivites) {
-		this.secteuractivites = secteuractivites;
+		this.secteuractivites = (HashSet<Secteuractivite>) secteuractivites;
 	}
 
 	public Entreprise getEntreprise() {

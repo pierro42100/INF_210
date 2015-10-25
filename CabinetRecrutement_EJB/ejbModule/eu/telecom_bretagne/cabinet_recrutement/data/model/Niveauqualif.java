@@ -1,7 +1,9 @@
 package eu.telecom_bretagne.cabinet_recrutement.data.model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.Set;
 
 
@@ -22,11 +24,11 @@ public class Niveauqualif implements Serializable {
 	private String intitule;
 
 	//bi-directional many-to-one association to Candidature
-	@OneToMany(mappedBy="niveauqualif")
+	@OneToMany(mappedBy="niveauqualif", fetch=FetchType.EAGER)
 	private Set<Candidature> candidatures;
 
 	//bi-directional many-to-one association to Offreemploi
-	@OneToMany(mappedBy="niveauqualif")
+	@OneToMany(mappedBy="niveauqualif", fetch=FetchType.EAGER)
 	private Set<Offreemploi> offreemplois;
 
 	public Niveauqualif() {
