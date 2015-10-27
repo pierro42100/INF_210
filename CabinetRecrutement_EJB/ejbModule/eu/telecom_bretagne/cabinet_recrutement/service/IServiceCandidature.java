@@ -1,10 +1,12 @@
 package eu.telecom_bretagne.cabinet_recrutement.service;
 
+import java.util.HashSet;
 import java.util.List;
 
 import javax.ejb.Remote;
 
 import eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature;
+import eu.telecom_bretagne.cabinet_recrutement.data.model.Secteuractivite;
 
 /**
  * Interface du service gérant les candidatures
@@ -30,8 +32,7 @@ public interface IServiceCandidature
 	/**
 	 * 
 	 */
-	public void addCandidature();
-	//-----------------------------------------------------------------------------
+	public int addCandidature(String nomString, String prenomString, String dateNaissanceString, String adressePostaleString, String adresseElecString, String dateDepotString, String cvString, String secteursString[], int niveauId);	//-----------------------------------------------------------------------------
 	/**
 	 * 
 	 *///Suppression en cascade - que pour la candidature en question
