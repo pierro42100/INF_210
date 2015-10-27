@@ -60,7 +60,15 @@
 			<td><%=titreString%></td>
 			<td><%=descriptifString%></td>
 			<td><%=profilString%></td>
-			<td><%=secteursString.toString()%></td>
+			<%
+			String secteurAffichage = "";
+			for(int i = 0; i < secteursString.length ; i++){
+				
+				Secteuractivite sect = serviceSecteurActivite.getSecteur(Integer.parseInt(secteursString[i]));
+				secteurAffichage += sect.toString() + " - ";
+			}
+			%>
+			<td><%=secteurAffichage%></td>
 			<td><%=niveauString%></td>
 
 		</tr>

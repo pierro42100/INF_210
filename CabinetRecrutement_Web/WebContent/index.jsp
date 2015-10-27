@@ -76,6 +76,7 @@
 			<li><a href="">Lister message envoyés aux entreprises</a></li>
 		</ul>
 	</ul>
+	<a href="cabinet_recrutement_offres_rss.jsp">RSS</a>
 </body>
 
 </html>

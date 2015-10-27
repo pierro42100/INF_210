@@ -54,9 +54,9 @@ public class ServicesLocator
 		else if(nomEJB.equals("ServiceOffreEmploi"))
 			nomJNDI = "java:global/CabinetRecrutement/CabinetRecrutement_EJB/ServiceOffreEmploi!eu.telecom_bretagne.cabinet_recrutement.service.IServiceOffreEmploi";
 		else if(nomEJB.equals("ServiceSecteurs"))
-			nomJNDI = "java:global/CabinetRecrutement/CabinetRecrutement_EJB/ServiceSecteurs!eu.telecom_bretagne.cabinet_recrutement.service.ServiceSecteurs";
+			nomJNDI = "java:global/CabinetRecrutement/CabinetRecrutement_EJB/ServiceSecteurs!eu.telecom_bretagne.cabinet_recrutement.service.IServiceSecteurs";
 		else if(nomEJB.equals("ServiceCandidature"))
-			nomJNDI = "java:global/CabinetRecrutement/CabinetRecrutement_EJB/ServiceCandidature!eu.telecom_bretagne.cabinet_recrutement.service.ServiceCandidature";
+			nomJNDI = "java:global/CabinetRecrutement/CabinetRecrutement_EJB/ServiceCandidature!eu.telecom_bretagne.cabinet_recrutement.service.IServiceCandidature";
 		else if(nomEJB.equals("Service_XXX"))
 			nomJNDI = "*** À compléter ***";
 		
