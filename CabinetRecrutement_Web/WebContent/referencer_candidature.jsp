@@ -40,6 +40,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Référencer offre</title>
 <link rel="stylesheet" href="styles.css" type="text/css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script>
+  $(function() {
+    $( "#datepickerNaissance" ).datepicker();
+    $( "#datepickerDepot" ).datepicker();
+  });
+  </script>
 </head>
 <body style="text-align: center">
 
@@ -92,13 +101,13 @@
 		<h3>Prenom</h3>
 		<input type="text" name="prenom">
 		<h3>Date de naissance</h3>
-		<input type="text" name="dateNaissance">
+		<input type="text" id="datepickerNaissance" name="dateNaissance">
 		<h3>Adresse postale</h3>
 		<input type="text" name="adressePostale">
 		<h3>Adresse electronique</h3>
 		<input type="text" name="adresseElec">
 		<h3>Date de depot</h3>
-		<input type="text" name="dateDepot">
+		<input id="datepickerDepot" type="text" name="dateDepot">
 		<h3>CV</h3>
 		<input type="textarea" name="cv"><br>
 
