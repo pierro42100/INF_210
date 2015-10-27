@@ -36,7 +36,7 @@ public class Secteuractivite implements Serializable {
 			}
 			)
 	
-	private HashSet<Candidature> candidatures;
+	private Set<Candidature> candidatures;
 
 	//bi-directional many-to-many association to Offreemploi
 	@ManyToMany
@@ -49,7 +49,7 @@ public class Secteuractivite implements Serializable {
 					@JoinColumn(name="idoffre")
 			}
 			)
-	private HashSet<Offreemploi> offreemplois;
+	private Set<Offreemploi> offreemplois;
 
 	public Secteuractivite() {
 	}
@@ -70,19 +70,19 @@ public class Secteuractivite implements Serializable {
 		this.intitule = intitule;
 	}
 
-	public HashSet<Candidature> getCandidatures() {
+	public Set<Candidature> getCandidatures() {
 		return this.candidatures;
 	}
 
-	public void setCandidatures(Set<Candidature> candidatures) {
-		this.candidatures = (HashSet<Candidature>) candidatures;
+	public void setCandidatures(HashSet<Candidature> candidatures) {
+		this.candidatures = candidatures;
 	}
 
 	public Set<Offreemploi> getOffreemplois() {
 		return this.offreemplois;
 	}
 
-	public void setOffreemplois(Set<Offreemploi> offreemplois) {
+	public void setOffreemplois(HashSet<Offreemploi> offreemplois) {
 		this.offreemplois = (HashSet<Offreemploi>) offreemplois;
 	}
 	public String toString(){

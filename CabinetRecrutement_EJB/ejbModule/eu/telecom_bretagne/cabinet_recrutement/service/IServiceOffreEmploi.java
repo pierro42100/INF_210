@@ -32,7 +32,7 @@ public interface IServiceOffreEmploi
 	/**
 	 * 
 	 */
-	public int addOffreEmploi(String titreString, String descriptifString, String profilString, HashSet<Secteuractivite> secteurString, int niveauId);
+	public int addOffreEmploi(String titreString, String descriptifString, String profilString, String secteursString[], int niveauId, int idEntreprise);
 	//-----------------------------------------------------------------------------
 	/**
 	 * 

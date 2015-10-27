@@ -27,15 +27,11 @@
   String titreString = request.getParameter("titre");
   String descriptifString = request.getParameter("descriptif");
   String profilString = request.getParameter("profil");
-  
-  System.out.println(request.getParameter("secteur"));
-  String secteurStringTab[] = null;
-  if(request.getParameter("secteur") != null){
-	 secteurStringTab = request.getParameter("secteur").split(" ");//tous les id des secteurs récupérés dans un tableau
-  }
-  
-  HashSet<Secteuractivite> secteuractivites = new HashSet<Secteuractivite>(); 
+  String idEntreprise = request.getParameter("idEntreprise");
+  String secteursString[]  = request.getParameterValues("secteur");  
   String niveauString = request.getParameter("niveau");
+  
+  
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -47,16 +43,8 @@
 <body style="text-align: center">
 
 	<% if(titreString!=null){
-			int niveauId=1;//test
-			
-			//création de la liste des secteurs d'activités
-			for(int i = 0 ; i < secteurStringTab.length ; i++)
-			{
-				secteuractivites.add(serviceSecteurActivite.getSecteur(Integer.parseInt(secteurStringTab[i])));
-			}
-			
-			int id = serviceOffreEmploi.addOffreEmploi(titreString, descriptifString, profilString, secteuractivites, niveauId);
-			
+		
+			int id = serviceOffreEmploi.addOffreEmploi(titreString, descriptifString, profilString, secteursString, Integer.parseInt(niveauString), Integer.parseInt(idEntreprise));
 	%>
 	<table id="affichage" style="text-align: center">
 		<tr>
@@ -72,7 +60,7 @@
 			<td><%=titreString%></td>
 			<td><%=descriptifString%></td>
 			<td><%=profilString%></td>
-			<td><%=secteuractivites.toString()%></td>
+			<td><%=secteursString.toString()%></td>
 			<td><%=niveauString%></td>
 
 		</tr>
@@ -89,23 +77,71 @@
 		<h3>Profil</h3>
 		<input type="text" name="profil">
 		<h3>Secteurs</h3>
-		
-		<select name="liste_secteurs" onChange="javascript:this.form.secteur.value = this.form.secteur.value + this.form.liste_secteurs.value + ' ';">
-			<option value=""></option>
-			<% 
-		
-			List<Secteuractivite> secteurs = serviceSecteurActivite.listeDesSecteur();
-			for(Secteuractivite sec : secteurs){
-
-		%>
-			<option value="<%= sec.getId()%>"><%= sec.getIntitule()%></option>
-			<%
-			}
-		%>
-		</select> <input type="text" name="secteur">
+		<th>Secteur(s) d'activité :</th>
+		<td>
+			<table id="tab_interne">
+				<tr>
+					<td><input type="checkbox" name="secteur" value="1">Achats/Logistique</td>
+					<td><input type="checkbox" name="secteur" value="2">Assistanat/Secrétariat</td>
+					<td><input type="checkbox" name="secteur" value="3">Agriculture</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" name="secteur" value="4">Agroalimentaire</td>
+					<td><input type="checkbox" name="secteur" value="5">Assurance</td>
+					<td><input type="checkbox" name="secteur" value="6">Audit/Conseil/Expertises</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" name="secteur" value="7">BTP/Immobilier</td>
+					<td><input type="checkbox" name="secteur" value="8">Commercial</td>
+					<td><input type="checkbox" name="secteur" value="9">Communication/Art/Média/Mode</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" name="secteur" value="10">Comptabilité</td>
+					<td><input type="checkbox" name="secteur" value="11">Direction
+						Générale/Executive</td>
+					<td><input type="checkbox" name="secteur" value="12">Distribution/Commerce</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" name="secteur" value="13">Electronique/Microélectronique</td>
+					<td><input type="checkbox" name="secteur" value="14">Environnement</td>
+					<td><input type="checkbox" name="secteur" value="15">Finance/Banque</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" name="secteur" value="16">Formation/Enseignement</td>
+					<td><input type="checkbox" name="secteur" value="17">Hôtellerie/Restauration/Tourisme</td>
+					<td><input type="checkbox" name="secteur" value="18">Industrie/Ingénierie/Production</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" name="secteur" value="19">Informatique</td>
+					<td><input type="checkbox" name="secteur" value="20">Juridique/Fiscal/Droit</td>
+					<td><input type="checkbox" name="secteur" value="21">Marketing</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" name="secteur" value="22">Public/Parapublic</td>
+					<td><input type="checkbox" name="secteur" value="23">Ressources
+						Humaines</td>
+					<td><input type="checkbox" name="secteur" value="24">Santé/Social/Biologie/Humanitaire</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" name="secteur" value="25">Télécom/Réseaux</td>
+				</tr>
+			</table>
+		</td>
 		<h3>Niveaux qualifications</h3>
-		<input type="text" name="niveau"> </br> <input type="submit"
-			value="Envoyer">
+		<td>
+			<table id="tab_interne">
+				<tr>
+					<td><input type="radio" name="niveau" value="1">CAP/BEP</td>
+					<td><input type="radio" name="niveau" value="2">Bac</td>
+					<td><input type="radio" name="niveau" value="3">Bac+3</td>
+					<td><input type="radio" name="niveau" value="4">Bac+5</td>
+					<td><input type="radio" name="niveau" value="5">Doctorat</td>
+				</tr>
+			</table>
+		</td>
+
+		<input type="hidden" name="idEntreprise" value="<%=idEntreprise%>">
+		<input type="submit" value="Envoyer">
 	</form>
 
 

@@ -37,7 +37,7 @@ public class Offreemploi implements Serializable {
 
 	//bi-directional many-to-many association to Secteuractivite
 	@ManyToMany(mappedBy="offreemplois", fetch=FetchType.EAGER)
-	private HashSet<Secteuractivite> secteuractivites = new HashSet<Secteuractivite>();
+	private Set<Secteuractivite> secteuractivites;
 
 	//bi-directional many-to-one association to Entreprise
 	@ManyToOne
@@ -97,7 +97,7 @@ public class Offreemploi implements Serializable {
 	}
 
 	public void setSecteuractivites(Set<Secteuractivite> secteuractivites) {
-		this.secteuractivites = (HashSet<Secteuractivite>) secteuractivites;
+		this.secteuractivites = secteuractivites;
 	}
 
 	public Entreprise getEntreprise() {
