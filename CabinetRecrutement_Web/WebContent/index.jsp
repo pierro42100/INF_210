@@ -47,7 +47,7 @@
 	<h3>Offre emploi</h3>
 	<ul>
 		<li><a href="liste_offres.jsp">Lister les offres d'emploi</a></li>
-		<% if(session.getAttribute("utilisateur") != null){
+		<% if(utilisateur != null && utilisateur instanceof Entreprise){
 			Entreprise e = (Entreprise) utilisateur;
 		%>
 		<ul>
@@ -57,16 +57,22 @@
 			<li><a href="">Supprimer une offre d'emploi</a></li>
 		</ul>
 		<%} %>
+		<% if(utilisateur != null && utilisateur instanceof Candidature){
+			Candidature c = (Candidature) utilisateur;
+		%>
 		<ul>
 			<h4>Mode connecté utilisateur</h4>
 			<li><a href="">Liste des offres d'emplois</a></li>
 		</ul>
 	</ul>
-	
+	<%} %>
 	<h3>Candidatures</h3>
 	<ul>
 		<li><a href="liste_candidatures.jsp">Liste des candidatures</a></li>
 		<li><a href="referencer_candidature.jsp">Référencer une candidature</a></li>
+		<% if(utilisateur != null && utilisateur instanceof Candidature){
+			Candidature c = (Candidature) utilisateur;
+		%>
 		<ul>
 			<h4>Mode connecté utilisateur</h4>
 			<li><a href="">Mettre à jour sa candidature</a></li>
@@ -76,6 +82,7 @@
 			<li><a href="">Lister message envoyés aux entreprises</a></li>
 		</ul>
 	</ul>
+	<%} %>
 	<a href="cabinet_recrutement_offres_rss.jsp">RSS</a>
 </body>
 
