@@ -3,6 +3,7 @@ package eu.telecom_bretagne.cabinet_recrutement.service;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.ejb.EJB;
 import javax.ejb.LocalBean;
@@ -41,6 +42,7 @@ public class ServiceOffreEmploi implements IServiceOffreEmploi
 		
 		return offreEmploiDAO.findById(id) ;
 	}
+	
 	@Override
 	public List<Offreemploi> listeDesOffresEmploi() {
 	
@@ -78,8 +80,19 @@ public class ServiceOffreEmploi implements IServiceOffreEmploi
 		return o.getId();
 	}
 	@Override
-	public void removeOffreEmploi() {
+	public void removeOffreEmploi(int id) {
 		// TODO Auto-generated method stub
+		Offreemploi o = offreEmploiDAO.findById(id);
+		Entreprise e = o.getEntreprise();
+		Niveauqualif n = o.getNiveauqualif();
+		Set<Secteuractivite> s = o.getSecteuractivites();
+		e.removeOffreemploi2(o);
+		n.removeOffreemploi2(o);
+		for(Secteuractivite sec :s){
+			sec.removeOffreemploi2(o);
+		}
+		
+		offreEmploiDAO.remove(o);
 		
 	}
 	@Override

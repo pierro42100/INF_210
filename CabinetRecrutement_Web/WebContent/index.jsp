@@ -62,7 +62,7 @@
 		%>
 		<ul>
 			<h4>Mode connecté utilisateur</h4>
-			<li><a href="">Liste des offres d'emplois</a></li>
+			<li><a href="liste_offres_candidature.jsp?id=<%= c.getId()%>">Liste des offres d'emplois</a></li>
 		</ul>
 	</ul>
 	<%} %>

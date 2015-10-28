@@ -100,6 +100,11 @@ public class Entreprise implements Serializable {
 		return offreemploi;
 	}
 	
+	public void removeOffreemploi2(Offreemploi offreemploi) {
+		getOffreemplois().remove(offreemploi);
+
+	}
+	
 	public String toString(){
 		return nom;
 	}

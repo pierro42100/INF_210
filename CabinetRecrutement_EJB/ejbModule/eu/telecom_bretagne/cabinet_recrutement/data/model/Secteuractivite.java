@@ -85,6 +85,10 @@ public class Secteuractivite implements Serializable {
 	public void setOffreemplois(HashSet<Offreemploi> offreemplois) {
 		this.offreemplois = (HashSet<Offreemploi>) offreemplois;
 	}
+	public void removeOffreemploi2(Offreemploi offreemploi) {
+		getOffreemplois().remove(offreemploi);
+
+	}
 	public String toString(){
 
 		return intitule;

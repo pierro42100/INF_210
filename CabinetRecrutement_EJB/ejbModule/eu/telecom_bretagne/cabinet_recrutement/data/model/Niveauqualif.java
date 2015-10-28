@@ -94,6 +94,11 @@ public class Niveauqualif implements Serializable {
 		return offreemploi;
 	}
 	
+	public void removeOffreemploi2(Offreemploi offreemploi) {
+		getOffreemplois().remove(offreemploi);
+
+	}
+	
 	public String toString(){
 		
 		return intitule;

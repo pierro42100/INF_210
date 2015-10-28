@@ -37,6 +37,7 @@
 			<th>Niveau qualification</th>
 			<th>Date dépot</th>
 			<th>Liste candidats</th> 
+			<th>MAJ/DEL</th>
 		</tr>
 		<%
 			Entreprise e = serviceEntreprise.getEntreprise(Integer.parseInt(idString));
@@ -45,11 +46,12 @@
 		%>
 		<tr>
 			<td>Offre d'emploi_<%=oeTemp.getId()%></td>
-			<td><%=oeTemp.getTitre() %></a></td>
-			<td><%=oeTemp.getEntreprise().getNom() %></a></td>
-			<td><%=oeTemp.getNiveauqualif().getIntitule() %></a></td>
-			<td><%=oeTemp.getDateDepot() %></a></td>
-			<td>Liste candidats - TODO</a></td>
+			<td><%=oeTemp.getTitre() %></td>
+			<td><%=oeTemp.getEntreprise().getNom() %></td>
+			<td><%=oeTemp.getNiveauqualif().getIntitule() %></td>
+			<td><%=oeTemp.getDateDepot() %></td>
+			<td>Liste candidats - TODO</td>
+			<td><a href="index.jsp">MAJ</a>/<a href="supprimer_offre.jsp?id=<%= oeTemp.getId()%>">DEL</a></td>
 		</tr>
 		<%
 			}

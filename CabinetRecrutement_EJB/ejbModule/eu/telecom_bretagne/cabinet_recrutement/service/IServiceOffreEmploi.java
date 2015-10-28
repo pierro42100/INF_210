@@ -37,7 +37,7 @@ public interface IServiceOffreEmploi
 	/**
 	 * 
 	 *///Suppression en cascade - que pour la candidature en question
-	public void removeOffreEmploi();
+	public void removeOffreEmploi(int id);
 	//-----------------------------------------------------------------------------
 	/**
 	 * 
