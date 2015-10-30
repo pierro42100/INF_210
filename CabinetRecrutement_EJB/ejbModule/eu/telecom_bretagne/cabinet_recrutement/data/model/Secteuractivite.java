@@ -39,7 +39,7 @@ public class Secteuractivite implements Serializable {
 	private Set<Candidature> candidatures;
 
 	//bi-directional many-to-many association to Offreemploi
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(
 			name="offre_secteur"
 			, joinColumns={

@@ -10,15 +10,16 @@
                 eu.telecom_bretagne.cabinet_recrutement.front.utils.Utils,
                 eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature,
                 eu.telecom_bretagne.cabinet_recrutement.data.model.Offreemploi,
+                eu.telecom_bretagne.cabinet_recrutement.data.model.Niveauqualif,
                 eu.telecom_bretagne.cabinet_recrutement.data.model.Secteuractivite,
                 java.util.List"%>
 
 <%
 	// Récupération du service (bean session)
 	IServiceCandidature serviceCandidature = (IServiceCandidature) ServicesLocator
-			.getInstance().getRemoteInterface("ServiceCandidature");
+	.getInstance().getRemoteInterface("ServiceCandidature");
 	IServiceOffreEmploi serviceOffreEmploi = (IServiceOffreEmploi) ServicesLocator
-			.getInstance().getRemoteInterface("ServiceOffreEmploi");
+	.getInstance().getRemoteInterface("ServiceOffreEmploi");
 	String idString = request.getParameter("id");
 %>
 
@@ -44,28 +45,49 @@
 			<th>Liste candidats</th>
 		</tr>
 		<%
-			
-			List<Offreemploi> oe = serviceOffreEmploi.listeDesOffresEmploi();
+			Candidature c = serviceCandidature.getCandidature(Integer.parseInt(idString));
+				Set<Offreemploi> oen = c.getNiveauqualif().getOffreemplois();
+				Set<Secteuractivite> secteurs = c.getSecteuractivites();
+				Set<Offreemploi> oes = new HashSet<Offreemploi>();
+				Set<Offreemploi> total = new HashSet<Offreemploi>();
+				for(Secteuractivite s : secteurs){
+			oes=s.getOffreemplois();
+			for(Offreemploi oe1 : oes){
+				for(Offreemploi oe2 : oen){
+					if(oe1.equals(oe2)){
+						total.add(oe1);
+					}
+				}
+			}
+				}
+				
+			//List<Offreemploi> oe = serviceOffreEmploi.listeDesOffresEmploi();
 
-			for (Offreemploi oeTemp : oe) {
+			for (Offreemploi oeTemp : total) {
 				HashSet<Secteuractivite> sect =(HashSet) oeTemp.getSecteuractivites();
+				Niveauqualif niveau =oeTemp.getNiveauqualif();
+				Set<Candidature> candNiv=niveau.getCandidatures();
 		%>
 		<tr>
 			<td>Offre d'emploi_<%=oeTemp.getId()%></td>
-			<td><%=oeTemp.getTitre() %></td>
-			<td><%=oeTemp.getEntreprise().getNom() %></td>
-			<td><%=oeTemp.getNiveauqualif().getIntitule() %></td>
-			<td><%=oeTemp.getDateDepot() %></td>
-			<td><%
+			<td><%=oeTemp.getTitre()%></td>
+			<td><%=oeTemp.getEntreprise().getNom()%></td>
+			<td><%=oeTemp.getNiveauqualif().getIntitule()%></td>
+			<td><%=oeTemp.getDateDepot()%></td>
+			<td>
+				<%
 					for(Secteuractivite s : sect){
-						Set<Candidature> cand = s.getCandidatures();
-							for(Candidature c : cand){
-						%>
-						-<%=c.getNom()%><br>
-						<%
-							}
-					}
-				%></td>
+								Set<Candidature> cand = s.getCandidatures();
+									for(Candidature ce : cand){
+										for(Candidature ce2 : candNiv){
+											if(ce.equals(ce2)){
+				%> -<%=ce.getNom()%><br> <%
+ 	}
+ 						}
+ 					}
+ 			}
+ %>
+			</td>
 		</tr>
 		<%
 			}

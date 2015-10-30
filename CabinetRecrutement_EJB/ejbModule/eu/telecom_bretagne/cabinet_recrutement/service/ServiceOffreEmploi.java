@@ -72,12 +72,15 @@ public class ServiceOffreEmploi implements IServiceOffreEmploi
 			Secteuractivite sect = secteurActiviteDAO.findById(Integer.parseInt(secteurs[i]));
 			
 			o.getSecteuractivites().add(sect);
-
+			HashSet<Offreemploi> offres =(HashSet) sect.getOffreemplois();
+			offres.add(o);
+			sect.setOffreemplois(offres);
 			secteurActiviteDAO.update(sect);
 		}
 		offreEmploiDAO.update(o);
 		
-		
+		niveau.addOffreemploi(o);
+		niveauQualifDAO.update(niveau);
 		e.addOffreemploi(o);
 		entrepriseDAO.update(e);
 		return o.getId();

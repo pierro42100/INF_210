@@ -82,6 +82,9 @@ public class ServiceCandidature implements IServiceCandidature
 
 			secteurActiviteDAO.update(sect);
 		}
+		
+		niveau.addCandidature(c);
+		niveauQualifDAO.update(niveau);
 		candidatureDAO.update(c);
 		return c.getId();
 	}

@@ -11,6 +11,7 @@
                 eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise,
                 eu.telecom_bretagne.cabinet_recrutement.data.model.Offreemploi,
                 eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature,
+                eu.telecom_bretagne.cabinet_recrutement.data.model.Niveauqualif,
                 eu.telecom_bretagne.cabinet_recrutement.data.model.Secteuractivite,
                 java.util.List"%>
 
@@ -38,13 +39,15 @@
 			<th>Entreprise</th>
 			<th>Niveau qualification</th>
 			<th>Date dépot</th>
-			<th>Liste candidats</th> 
-			
+			<th>Liste candidats</th>
+
 		</tr>
 		<%
 			List<Offreemploi> oe = serviceOffreEmploi.listeDesOffresEmploi();
 			for (Offreemploi oeTemp : oe) {
 				HashSet<Secteuractivite> sect =(HashSet) oeTemp.getSecteuractivites();
+				Niveauqualif niveau =oeTemp.getNiveauqualif();
+				Set<Candidature> candNiv=niveau.getCandidatures();
 		%>
 		<tr>
 			<td>Offre d'emploi_<%=oeTemp.getId()%></td>
@@ -52,17 +55,22 @@
 			<td><%=oeTemp.getEntreprise().getNom() %></td>
 			<td><%=oeTemp.getNiveauqualif().getIntitule() %></td>
 			<td><%=oeTemp.getDateDepot() %></td>
-			<td><%
+			<td>
+				<%
 					for(Secteuractivite s : sect){
 						Set<Candidature> cand = s.getCandidatures();
 							for(Candidature c : cand){
-						%>
-						-<%=c.getNom()%><br>
-						<%
+								for(Candidature ce2 : candNiv){
+									if(c.equals(ce2)){
+						%> -<%=c.getNom()%><br> <%
+									}
+								}
 							}
 					}
-				%></td>
-			<th><a href="infos_offre.jsp?id=<%=oeTemp.getId()%>">Plus d'informations</a></th>
+				%>
+			</td>
+			<th><a href="infos_offre.jsp?id=<%=oeTemp.getId()%>">Plus
+					d'informations</a></th>
 		</tr>
 		<%
 			}
