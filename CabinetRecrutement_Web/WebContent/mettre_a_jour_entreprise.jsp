@@ -26,10 +26,18 @@ IServiceEntreprise serviceEntreprise = (IServiceEntreprise) ServicesLocator
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Mettre à jour l'entreprise</title>
-<link rel="stylesheet" href="styles.css" type="text/css" />
+<link rel="stylesheet" href="./css/bootstrap.min.css" type="text/css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+<script src="./js/bootstrap.min.js"></script>
 </head>
 
-<body>
+<body class="container">
 	<% if(nomString!=null && descriptifString != null && adressepostaleString != null){
 			serviceEntreprise.updateEntreprise(Integer.parseInt(idString), nomString, descriptifString, adressepostaleString);
 	}
@@ -54,7 +62,7 @@ IServiceEntreprise serviceEntreprise = (IServiceEntreprise) ServicesLocator
 
 	<h2>Infos entreprise :</h2>
 
-	<table id="affichage">
+	<table id="affichage" class="table-bordered table-striped">
 		<tr>
 			<th style="width: 170px;">Identifiant :</th>
 			<td>ENT_<%=entreprise.getId()%>

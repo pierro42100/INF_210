@@ -43,13 +43,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Référencer offre</title>
-<link rel="stylesheet" href="styles.css" type="text/css" />
+<link rel="stylesheet" href="./css/bootstrap.min.css" type="text/css" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <link rel="stylesheet"
 	href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+<script src="./js/bootstrap.min.js"></script>
 <script>
 	$(function() {
 		$("#datepickerNaissance").datepicker();
@@ -57,7 +59,7 @@
 	});
 </script>
 </head>
-<body style="text-align: center">
+<body style="text-align: center" class="container">
 
 	<%
 		if (nomString != null) {
@@ -127,9 +129,8 @@
 		<input type="text" name="adresseElec">
 		<h3>CV</h3>
 		<input type="textarea" name="cv"><br>
-
-		<td>
-			<table id="tab_interne">
+		<h3>Secteur activité</h3>
+			<table id="tab_interne" class="table-striped table-bordered">
 				<tr>
 					<td><input type="checkbox" name="secteur" value="1">Achats/Logistique</td>
 					<td><input type="checkbox" name="secteur" value="2">Assistanat/Secrétariat</td>
@@ -176,10 +177,9 @@
 					<td><input type="checkbox" name="secteur" value="25">Télécom/Réseaux</td>
 				</tr>
 			</table>
-		</td>
 		<h3>Niveaux qualifications</h3>
 		<td>
-			<table id="tab_interne">
+			<table id="tab_interne" class="table-striped table-bordered">
 				<tr>
 					<td><input type="radio" name="niveau" value="1">CAP/BEP</td>
 					<td><input type="radio" name="niveau" value="2">Bac</td>

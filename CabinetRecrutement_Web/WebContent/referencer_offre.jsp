@@ -38,15 +38,23 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Référencer offre</title>
-<link rel="stylesheet" href="styles.css" type="text/css" />
+<link rel="stylesheet" href="./css/bootstrap.min.css" type="text/css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+<script src="./js/bootstrap.min.js"></script>
 </head>
-<body style="text-align: center">
+<body style="text-align: center" class="container">
 
 	<% if(titreString!=null){
 		
 			int id = serviceOffreEmploi.addOffreEmploi(titreString, descriptifString, profilString, secteursString, Integer.parseInt(niveauString), Integer.parseInt(idEntreprise));
 	%>
-	<table id="affichage" style="text-align: center">
+	<table id="affichage" style="text-align: center" class="table-bordered table-striped">
 		<tr>
 			<th>Identifiant</th>
 			<th>Titre</th>
@@ -87,7 +95,7 @@
 		<h3>Secteurs</h3>
 		<th>Secteur(s) d'activité :</th>
 		<td>
-			<table id="tab_interne">
+			<table id="tab_interne" class="table-bordered table-striped">
 				<tr>
 					<td><input type="checkbox" name="secteur" value="1">Achats/Logistique</td>
 					<td><input type="checkbox" name="secteur" value="2">Assistanat/Secrétariat</td>
@@ -137,7 +145,7 @@
 		</td>
 		<h3>Niveaux qualifications</h3>
 		<td>
-			<table id="tab_interne">
+			<table id="tab_interne" class="table-bordered table-striped">
 				<tr>
 					<td><input type="radio" name="niveau" value="1">CAP/BEP</td>
 					<td><input type="radio" name="niveau" value="2">Bac</td>

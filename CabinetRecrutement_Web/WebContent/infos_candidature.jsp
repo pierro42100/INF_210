@@ -1,6 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 
-<%@page import="eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocator,
+<%@page
+	import="eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocator,
                 eu.telecom_bretagne.cabinet_recrutement.front.utils.Utils,
                 eu.telecom_bretagne.cabinet_recrutement.service.IServiceEntreprise,
                 eu.telecom_bretagne.cabinet_recrutement.service.IServiceCandidature,
@@ -18,21 +20,30 @@
 
 <html>
 
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Informations sur la candidature</title>
-    <link rel="stylesheet" href="styles.css" type="text/css" />
-  </head>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Informations sur la candidature</title>
+<link rel="stylesheet" href="./css/bootstrap.min.css" type="text/css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
-  <body>
-  
-		<%
+<script src="./js/bootstrap.min.js"></script>
+</head>
+
+<body class="container">
+
+	<%
 		  // Test en cas d'appel incorrect
 		  if(idString == null)
 		  {
 		    %>
-		    <p class="erreur">Erreur : il n'y a aucune offre qui corresponde à cette recherche.</p>
-		    <%
+	<p class="erreur">Erreur : il n'y a aucune offre qui corresponde à
+		cette recherche.</p>
+	<%
 		  }
 		  else // C'est à priori correct...
 		  {
@@ -43,75 +54,58 @@
 			// Appel de la fonctionnalité désirée auprès du service
 		  	Candidature candidature = serviceCandidature.getCandidature(id);
 		    %>
-		    
-		    <!-- Affichage des information récupérées -->
-		    
-		    <h2>Infos de la candidature :</h2>
 
-		    <table id="affichage">
-		      <tr>
-		        <th style="width: 170px;">Identifiant :</th>
-		        <td>
-		          CAND_<%=candidature.getId()%>
-		        </td>
-		      </tr>
-		      <tr>
-		        <th>Nom :</th>
-		        <td>
-		          <%=candidature.getNom()%>
-		        </td>
-		      </tr>
-		      <tr>
-		        <th>Prénom :</th>
-		        <td>
-		          <%=candidature.getPrenom()%>
-		        </td>
-		      </tr>
-		      <tr>
-		        <th>Date naissance :</th>
-		        <td>
-		          <%=candidature.getDateNaissance()%>
-		        </td>
-		      </tr>
-		      <tr>
-		        <th>Adresse postale:</th>
-		        <td>
-		          <%=candidature.getAdressePostale()%>
-		        </td>
-		      </tr>
-		      <tr>
-		        <th>Adresse email :</th>
-		        <td>
-		          <%=candidature.getAdresseEmail()%>
-		        </td>
-		      </tr>
-		       <tr>
-		        <th>Niveau de qualification possédé :</th>
-		        <td>
-		          <%=candidature.getNiveauqualif().toString()%>
-		        </td>
-		      </tr>
-		       <tr>
-		        <th>Liste secteur activité :</th>
-		        <td>
-		          <%=candidature.getSecteuractivites().toString()%>
-		        </td>
-		      </tr>
-		       <tr>
-		        <th>Date de dépôt :</th>
-		        <td>
-		          <%=candidature.getDateDepot()%>
-		        </td>
-		      </tr>
-		    </table>
-        
-        <a href="liste_offres.jsp">Retour à la liste des offres</a>
+	<!-- Affichage des information récupérées -->
 
-		    <%
+	<h2>Infos de la candidature :</h2>
+
+	<table id="affichage" class="table-bordered table-striped">
+		<tr>
+			<th style="width: 170px;">Identifiant :</th>
+			<td>CAND_<%=candidature.getId()%>
+			</td>
+		</tr>
+		<tr>
+			<th>Nom :</th>
+			<td><%=candidature.getNom()%></td>
+		</tr>
+		<tr>
+			<th>Prénom :</th>
+			<td><%=candidature.getPrenom()%></td>
+		</tr>
+		<tr>
+			<th>Date naissance :</th>
+			<td><%=candidature.getDateNaissance()%></td>
+		</tr>
+		<tr>
+			<th>Adresse postale:</th>
+			<td><%=candidature.getAdressePostale()%></td>
+		</tr>
+		<tr>
+			<th>Adresse email :</th>
+			<td><%=candidature.getAdresseEmail()%></td>
+		</tr>
+		<tr>
+			<th>Niveau de qualification possédé :</th>
+			<td><%=candidature.getNiveauqualif().toString()%></td>
+		</tr>
+		<tr>
+			<th>Liste secteur activité :</th>
+			<td><%=candidature.getSecteuractivites().toString()%></td>
+		</tr>
+		<tr>
+			<th>Date de dépôt :</th>
+			<td><%=candidature.getDateDepot()%></td>
+		</tr>
+	</table>
+
+	<a href="liste_offres.jsp">Retour à la liste des offres</a>
+
+	<%
 		  }
 		%>
-		
-  </body>
-  
+
+</body>
+
 </html>
 

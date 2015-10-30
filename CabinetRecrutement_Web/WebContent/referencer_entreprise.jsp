@@ -27,15 +27,23 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Referencer entreprise</title>
-<link rel="stylesheet" href="styles.css" type="text/css" />
+<link rel="stylesheet" href="./css/bootstrap.min.css" type="text/css" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
+<script src="./js/bootstrap.min.js"></script>
 </head>
-<body style="text-align: center">
+<body style="text-align: center" class="container">
 
 	<% if(nomString!=null){
 			int id=serviceEntreprise.addEntreprise(nomString, descriptifString, adressepostaleString);
 			
 	%>
-	<table id="affichage" style="text-align:center">
+	<table id="affichage" style="text-align:center" class="table-bordered table-striped">
 		<tr>
 			<th>Identifiant</th>
 			<th>Nom</th>
