@@ -53,6 +53,7 @@ public class Candidature implements Serializable {
 	//bi-directional many-to-many association to Secteuractivite
 	@ManyToMany(mappedBy="candidatures", fetch=FetchType.EAGER)
 	private HashSet<Secteuractivite> secteuractivites = new HashSet<Secteuractivite>();
+	
 
 	public Candidature() {
 	}

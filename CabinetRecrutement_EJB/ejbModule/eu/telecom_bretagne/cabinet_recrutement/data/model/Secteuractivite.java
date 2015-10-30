@@ -25,7 +25,7 @@ public class Secteuractivite implements Serializable {
 	private String intitule;
 
 	//bi-directional many-to-many association to Candidature
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(
 			name="candidature_secteur"
 			, joinColumns={

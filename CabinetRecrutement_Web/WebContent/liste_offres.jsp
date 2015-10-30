@@ -6,9 +6,12 @@
                 eu.telecom_bretagne.cabinet_recrutement.service.IServiceEntreprise,
                 eu.telecom_bretagne.cabinet_recrutement.service.IServiceOffreEmploi,
                 java.util.HashSet,
+                java.util.Set,
                 eu.telecom_bretagne.cabinet_recrutement.front.utils.Utils,
                 eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise,
                 eu.telecom_bretagne.cabinet_recrutement.data.model.Offreemploi,
+                eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature,
+                eu.telecom_bretagne.cabinet_recrutement.data.model.Secteuractivite,
                 java.util.List"%>
 
 <%
@@ -41,14 +44,24 @@
 		<%
 			List<Offreemploi> oe = serviceOffreEmploi.listeDesOffresEmploi();
 			for (Offreemploi oeTemp : oe) {
+				HashSet<Secteuractivite> sect =(HashSet) oeTemp.getSecteuractivites();
 		%>
 		<tr>
 			<td>Offre d'emploi_<%=oeTemp.getId()%></td>
-			<td><%=oeTemp.getTitre() %></a></td>
-			<td><%=oeTemp.getEntreprise().getNom() %></a></td>
-			<td><%=oeTemp.getNiveauqualif().getIntitule() %></a></td>
-			<td><%=oeTemp.getDateDepot() %></a></td>
-			<td>Liste candidats - TODO</a></td>
+			<td><%=oeTemp.getTitre() %></td>
+			<td><%=oeTemp.getEntreprise().getNom() %></td>
+			<td><%=oeTemp.getNiveauqualif().getIntitule() %></td>
+			<td><%=oeTemp.getDateDepot() %></td>
+			<td><%
+					for(Secteuractivite s : sect){
+						Set<Candidature> cand = s.getCandidatures();
+							for(Candidature c : cand){
+						%>
+						-<%=c.getNom()%><br>
+						<%
+							}
+					}
+				%></td>
 			<th><a href="infos_offre.jsp?id=<%=oeTemp.getId()%>">Plus d'informations</a></th>
 		</tr>
 		<%

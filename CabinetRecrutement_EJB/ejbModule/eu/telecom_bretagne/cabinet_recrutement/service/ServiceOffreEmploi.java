@@ -77,6 +77,9 @@ public class ServiceOffreEmploi implements IServiceOffreEmploi
 		}
 		offreEmploiDAO.update(o);
 		
+		
+		e.addOffreemploi(o);
+		entrepriseDAO.update(e);
 		return o.getId();
 	}
 	@Override
@@ -84,6 +87,7 @@ public class ServiceOffreEmploi implements IServiceOffreEmploi
 		// TODO Auto-generated method stub
 		Offreemploi o = offreEmploiDAO.findById(id);
 		Entreprise e = o.getEntreprise();
+		e.removeOffreemploi2(o);
 		Niveauqualif n = o.getNiveauqualif();
 		Set<Secteuractivite> s = o.getSecteuractivites();
 		e.removeOffreemploi2(o);

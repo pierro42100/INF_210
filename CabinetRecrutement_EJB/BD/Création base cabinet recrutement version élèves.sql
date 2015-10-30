@@ -47,7 +47,7 @@ create table  offreEmploi
   profil_recherche varchar(150),
   date_depot date,
   idEntreprise integer not null references  entreprise ,
-  idQualification integer not null references  niveauQualif 
+  idQualification integer not null references  niveauQualif
 );
 
 create table  secteurActivite 
@@ -67,7 +67,7 @@ create table  candidature
   adresse_email varchar(50),
   cv text,
   date_depot date,
-  idQualification integer not null references  niveauQualif 
+  idQualification integer not null references  niveauQualif
 );
 
 

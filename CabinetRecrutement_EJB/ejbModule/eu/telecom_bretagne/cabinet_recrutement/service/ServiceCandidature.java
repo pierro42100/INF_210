@@ -2,6 +2,7 @@ package eu.telecom_bretagne.cabinet_recrutement.service;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Set;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -74,6 +75,10 @@ public class ServiceCandidature implements IServiceCandidature
 			Secteuractivite sect = secteurActiviteDAO.findById(Integer.parseInt(secteursString[i]));
 			
 			c.getSecteuractivites().add(sect);
+			
+			Set<Candidature> cand = sect.getCandidatures();
+			cand.add(c);
+			sect.setCandidatures((HashSet) cand);
 
 			secteurActiviteDAO.update(sect);
 		}

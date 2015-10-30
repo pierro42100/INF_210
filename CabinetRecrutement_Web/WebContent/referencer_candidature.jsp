@@ -9,27 +9,31 @@
                 eu.telecom_bretagne.cabinet_recrutement.service.IServiceSecteurs,
                 eu.telecom_bretagne.cabinet_recrutement.data.model.Candidature,
                 java.util.List,
+                java.util.Date,
+                java.text.DateFormat,
+				java.text.SimpleDateFormat,
+				java.util.Calendar,
                 java.util.HashSet"%>
 
 <%
-//Récupération du service (bean session)
+	//Récupération du service (bean session)
 	IServiceCandidature serviceCandidature = (IServiceCandidature) ServicesLocator
-			.getInstance().getRemoteInterface("ServiceCandidature");
+	.getInstance().getRemoteInterface("ServiceCandidature");
 //Récupération du service (bean session)
 	IServiceSecteurs serviceSecteurActivite= (IServiceSecteurs) ServicesLocator
-			.getInstance().getRemoteInterface("ServiceSecteurs");
+	.getInstance().getRemoteInterface("ServiceSecteurs");
 	// Appel de la fonctionnalité désirée auprès du service
 	List<Candidature> candidature = serviceCandidature.listeDesCandidatures();
 %>
 <%
-  // Récupération du paramètre (id) passé par l'URL : http://localhost:8080/infos_entreprises.jsp?id=1
+	// Récupération du paramètre (id) passé par l'URL : http://localhost:8080/infos_entreprises.jsp?id=1
   // Attention : la valeur récupérée, même numérique, est sous la forme d'une chaîne de caractères.
   String nomString = request.getParameter("nom");
   String prenomString = request.getParameter("prenom");
   String dateNaissanceString = request.getParameter("dateNaissance");
   String adressePostaleString = request.getParameter("adressePostale");
   String addresseElecString = request.getParameter("adresseElec");
-  String dateDepotString = request.getParameter("dateDepot");
+  //String dateDepotString = request.getParameter("dateDepot");
   String cvString = request.getParameter("cv");
   String secteursString[]  = request.getParameterValues("secteur");  
   String niveauString = request.getParameter("niveau");
@@ -40,20 +44,32 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Référencer offre</title>
 <link rel="stylesheet" href="styles.css" type="text/css" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<link rel="stylesheet"
+	href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 <script>
-  $(function() {
-    $( "#datepickerNaissance" ).datepicker();
-    $( "#datepickerDepot" ).datepicker();
-  });
-  </script>
+	$(function() {
+		$("#datepickerNaissance").datepicker();
+		$("#datepickerDepot").datepicker();
+	});
+</script>
 </head>
 <body style="text-align: center">
 
-	<% if(nomString!=null){
-			int id = serviceCandidature.addCandidature(nomString, prenomString, dateNaissanceString, adressePostaleString, addresseElecString, dateDepotString, cvString, secteursString, Integer.parseInt(niveauString));
+	<%
+		if (nomString != null) {
+			DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+			Date today = Calendar.getInstance().getTime();
+			String dateDepotString=df.format(today);
+			
+			int id = serviceCandidature.addCandidature(nomString,
+					prenomString, dateNaissanceString,
+					adressePostaleString, addresseElecString,
+					dateDepotString, cvString, secteursString,
+					Integer.parseInt(niveauString));
 			//int id =1;
 	%>
 	<table id="affichage" style="text-align: center">
@@ -79,12 +95,13 @@
 			<td><%=dateDepotString%></td>
 			<td><%=cvString%></td>
 			<%
-			String secteurAffichage = "";
-			for(int i = 0; i < secteursString.length ; i++){
-				
-				Secteuractivite sect = serviceSecteurActivite.getSecteur(Integer.parseInt(secteursString[i]));
-				secteurAffichage += sect.toString() + " - ";
-			}
+				String secteurAffichage = "";
+					for (int i = 0; i < secteursString.length; i++) {
+
+						Secteuractivite sect = serviceSecteurActivite
+								.getSecteur(Integer.parseInt(secteursString[i]));
+						secteurAffichage += sect.toString() + " - ";
+					}
 			%>
 			<td><%=secteurAffichage%></td>
 			<td><%=niveauString%></td>
@@ -92,7 +109,9 @@
 		</tr>
 	</table>
 
-	<% }%>
+	<%
+		}
+	%>
 
 	<h2>Référencer candidature</h2>
 	<form action="referencer_candidature.jsp" method="post">
@@ -106,8 +125,6 @@
 		<input type="text" name="adressePostale">
 		<h3>Adresse electronique</h3>
 		<input type="text" name="adresseElec">
-		<h3>Date de depot</h3>
-		<input id="datepickerDepot" type="text" name="dateDepot">
 		<h3>CV</h3>
 		<input type="textarea" name="cv"><br>
 
