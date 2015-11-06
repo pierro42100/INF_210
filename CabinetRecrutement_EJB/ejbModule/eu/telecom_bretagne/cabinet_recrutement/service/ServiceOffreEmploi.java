@@ -103,16 +103,42 @@ public class ServiceOffreEmploi implements IServiceOffreEmploi
 		
 	}
 	@Override
-	public void updateOffreEmploi(int idOffre, String titre, String desc, String profil) {
+	public void updateOffreEmploi(int idOffre, String titre, String desc, String profil,String secteursString[], int niveauId) {
 		// TODO Auto-generated method stub
 		// TODO Secteurs et Niveaux
-		
 		Offreemploi oe = offreEmploiDAO.findById(idOffre);
+		Offreemploi o = offreEmploiDAO.findById(idOffre); 
+		
+		Entreprise e = entrepriseDAO.findById(oe.getEntreprise().getId());
+		Niveauqualif niveau = niveauQualifDAO.findById(niveauId);
+		
+		oe.setNiveauqualif(niveau);
+		oe.setSecteuractivites(new HashSet<Secteuractivite>());
 		oe.setTitre(titre);
 		oe.setDescriptifMission(desc);
 		oe.setProfilRecherche(profil);
 		
+		for(int i = 0; i < secteursString.length ; i++){
+			
+			Secteuractivite sect = secteurActiviteDAO.findById(Integer.parseInt(secteursString[i]));
+			
+			oe.getSecteuractivites().add(sect);
+			HashSet<Offreemploi> offres =(HashSet) sect.getOffreemplois();
+			offres.remove(o);
+			offres.add(oe);
+			
+			sect.setOffreemplois(offres);
+			secteurActiviteDAO.update(sect);
+		}
 		offreEmploiDAO.update(oe);
+		
+		niveau.removeOffreemploi2(o);
+		niveau.addOffreemploi(oe);
+		niveauQualifDAO.update(niveau);
+		e.removeOffreemploi2(o);
+		e.addOffreemploi(oe);
+		entrepriseDAO.update(e);
+		
 	}
 	
 		

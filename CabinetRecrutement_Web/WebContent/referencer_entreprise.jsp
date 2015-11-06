@@ -39,7 +39,7 @@
 </head>
 <body style="text-align: center" class="container">
 
-	<% if(nomString!=null){
+	<% if(!nomString.isEmpty() && !descriptifString.isEmpty() && !adressepostaleString.isEmpty()){
 			int id=serviceEntreprise.addEntreprise(nomString, descriptifString, adressepostaleString);
 			
 	%>
@@ -57,7 +57,10 @@
 		</tr>
 	</table>
 
-	<% }%>
+	<% }
+	else{
+		%>ERREUR<%
+	}%>
 
 	<h2>Referencer entreprise</h2>
 	<form action="referencer_entreprise.jsp" method="post">

@@ -46,8 +46,8 @@ create table  offreEmploi
   descriptif_mission      text,
   profil_recherche varchar(150),
   date_depot date,
-  idEntreprise integer not null references  entreprise ,
-  idQualification integer not null references  niveauQualif
+  idEntreprise integer not null references  entreprise on delete cascade on update cascade,
+  idQualification integer not null references  niveauQualif on delete cascade on update cascade
 );
 
 create table  secteurActivite 
@@ -67,7 +67,7 @@ create table  candidature
   adresse_email varchar(50),
   cv text,
   date_depot date,
-  idQualification integer not null references  niveauQualif
+  idQualification integer not null references  niveauQualif on delete cascade on update cascade
 );
 
 
@@ -78,15 +78,15 @@ create table  candidature
 
 create table  offre_secteur 
 (
-  idOffre integer not null references  offreEmploi ,
-  idSecteur integer not null references  secteurActivite 
+  idOffre integer not null references  offreEmploi on delete cascade on update cascade,
+  idSecteur integer not null references  secteurActivite on delete cascade on update cascade
 
 );
 
 create table  candidature_secteur 
 (
-  idCandidature integer not null references  candidature ,
-  idSecteur integer not null references  secteurActivite 
+  idCandidature integer not null references  candidature on delete cascade on update cascade,
+  idSecteur integer not null references  secteurActivite on delete cascade on update cascade
 );
 
 -- +----------------------------------------------------------------------------------------------+

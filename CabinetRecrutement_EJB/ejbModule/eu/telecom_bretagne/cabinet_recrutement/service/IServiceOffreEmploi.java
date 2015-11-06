@@ -42,8 +42,7 @@ public interface IServiceOffreEmploi
 	/**
 	 * 
 	 */
-	public void updateOffreEmploi(int idOffre, String titre, String desc, String profil);
-	
+	public void updateOffreEmploi(int idOffre, String titre, String desc, String profil,String secteursString[], int niveauId);
 		
 	
 }

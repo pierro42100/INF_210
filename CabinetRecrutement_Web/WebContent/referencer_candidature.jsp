@@ -63,6 +63,7 @@
 
 	<%
 		if (nomString != null) {
+		    //&& !prenomString.isEmpty() && !dateNaissanceString.isEmpty() && !adressePostaleString.isEmpty() &&!addresseElecString.isEmpty() &&!cvString.isEmpty() &&!niveauString.isEmpty()
 			DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
 			Date today = Calendar.getInstance().getTime();
 			String dateDepotString=df.format(today);
@@ -112,6 +113,9 @@
 	</table>
 
 	<%
+		}else
+		{
+			%>ERREUR<%
 		}
 	%>
 

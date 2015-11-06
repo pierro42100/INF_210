@@ -5,6 +5,7 @@
 	import="eu.telecom_bretagne.cabinet_recrutement.front.utils.ServicesLocator,
                 eu.telecom_bretagne.cabinet_recrutement.service.IServiceEntreprise,
                 eu.telecom_bretagne.cabinet_recrutement.service.IServiceOffreEmploi,
+                eu.telecom_bretagne.cabinet_recrutement.service.IServiceSecteurs,
                 java.util.HashSet,
                 eu.telecom_bretagne.cabinet_recrutement.front.utils.Utils,
                 eu.telecom_bretagne.cabinet_recrutement.data.model.Entreprise,
@@ -18,6 +19,8 @@
 	//Récupération du service (bean session)
 	IServiceEntreprise serviceEntreprise = (IServiceEntreprise) ServicesLocator
 			.getInstance().getRemoteInterface("ServiceEntreprise");
+	IServiceSecteurs serviceSecteurActivite= (IServiceSecteurs) ServicesLocator
+			.getInstance().getRemoteInterface("ServiceSecteurs");
 	// Récupération du paramètre (id) passé par l'URL : http://localhost:8080/infos_entreprises.jsp?id=1
 	// Attention : la valeur récupérée, même numérique, est sous la forme d'une chaîne de caractères.
 		
@@ -26,7 +29,8 @@
 	String titreString = request.getParameter("titre");
 	String descriptifString = request.getParameter("descMission");
 	String profilString = request.getParameter("profil");
-	//TODO secteurs et niveaux
+	String secteursString[]  = request.getParameterValues("secteur");  
+	String niveauString = request.getParameter("niveau");
 %>
 
 <html>
@@ -49,7 +53,7 @@
 
 	<%
 		if (titreString != null && descriptifString != null) {
-			serviceOffreEmploi.updateOffreEmploi(Integer.parseInt(idStringOffre), titreString, descriptifString, profilString);
+			serviceOffreEmploi.updateOffreEmploi(Integer.parseInt(idStringOffre), titreString, descriptifString, profilString, secteursString, Integer.parseInt(niveauString));
 		}
 	%>
 
@@ -99,7 +103,7 @@
 		%>
 	</table>
 
-	<h2>Mettre à jour les information de l'offre sélectionnée</h2>
+	<h2>Mettre à jour les information de l'offre <%=idStringOffre %></h2>
 
 	<form action="mettre_a_jour_offre.jsp" method="post">
 
@@ -111,10 +115,69 @@
 		<input type="text" name="descMission">
 		<h3>Profil recherché</h3>
 		<input type="text" name="profil">
-		<h3>Niveau de qualification</h3>
-		<input type="text" name="niveau">
-		<h3>Secteurs d'actiivtés</h3>
-		<input type="text" name="secteurs">
+	<h3>Secteurs</h3>
+		<th>Secteur(s) d'activité :</th>
+		<td>
+			<table id="tab_interne" class="table-bordered table-striped">
+				<tr>
+					<td><input type="checkbox" name="secteur" value="1">Achats/Logistique</td>
+					<td><input type="checkbox" name="secteur" value="2">Assistanat/Secrétariat</td>
+					<td><input type="checkbox" name="secteur" value="3">Agriculture</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" name="secteur" value="4">Agroalimentaire</td>
+					<td><input type="checkbox" name="secteur" value="5">Assurance</td>
+					<td><input type="checkbox" name="secteur" value="6">Audit/Conseil/Expertises</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" name="secteur" value="7">BTP/Immobilier</td>
+					<td><input type="checkbox" name="secteur" value="8">Commercial</td>
+					<td><input type="checkbox" name="secteur" value="9">Communication/Art/Média/Mode</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" name="secteur" value="10">Comptabilité</td>
+					<td><input type="checkbox" name="secteur" value="11">Direction
+						Générale/Executive</td>
+					<td><input type="checkbox" name="secteur" value="12">Distribution/Commerce</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" name="secteur" value="13">Electronique/Microélectronique</td>
+					<td><input type="checkbox" name="secteur" value="14">Environnement</td>
+					<td><input type="checkbox" name="secteur" value="15">Finance/Banque</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" name="secteur" value="16">Formation/Enseignement</td>
+					<td><input type="checkbox" name="secteur" value="17">Hôtellerie/Restauration/Tourisme</td>
+					<td><input type="checkbox" name="secteur" value="18">Industrie/Ingénierie/Production</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" name="secteur" value="19">Informatique</td>
+					<td><input type="checkbox" name="secteur" value="20">Juridique/Fiscal/Droit</td>
+					<td><input type="checkbox" name="secteur" value="21">Marketing</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" name="secteur" value="22">Public/Parapublic</td>
+					<td><input type="checkbox" name="secteur" value="23">Ressources
+						Humaines</td>
+					<td><input type="checkbox" name="secteur" value="24">Santé/Social/Biologie/Humanitaire</td>
+				</tr>
+				<tr>
+					<td><input type="checkbox" name="secteur" value="25">Télécom/Réseaux</td>
+				</tr>
+			</table>
+		</td>
+		<h3>Niveaux qualifications</h3>
+		<td>
+			<table id="tab_interne" class="table-bordered table-striped">
+				<tr>
+					<td><input type="radio" name="niveau" value="1">CAP/BEP</td>
+					<td><input type="radio" name="niveau" value="2">Bac</td>
+					<td><input type="radio" name="niveau" value="3">Bac+3</td>
+					<td><input type="radio" name="niveau" value="4">Bac+5</td>
+					<td><input type="radio" name="niveau" value="5">Doctorat</td>
+				</tr>
+			</table>
+		</td>
 		
 		<input type="submit" value="Modifier">
 	</form>

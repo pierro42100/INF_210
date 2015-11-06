@@ -140,7 +140,8 @@
 	</div>
 </nav>
 <body class="container">
-	<a href="cabinet_recrutement_offres_rss.jsp">RSS</a>
+	<a href="cabinet_recrutement_offres_rss.jsp">RSS - Offres</a><br>
+	<a href="cabinet_recrutement_candidatures_rss.jsp">RSS - Candidature</a>
 </body>
 
 </html>
