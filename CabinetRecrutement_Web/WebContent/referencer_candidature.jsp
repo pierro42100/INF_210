@@ -62,9 +62,10 @@
 <body style="text-align: center" class="container">
 
 	<%
-		if (nomString != null) {
-		    //&& !prenomString.isEmpty() && !dateNaissanceString.isEmpty() && !adressePostaleString.isEmpty() &&!addresseElecString.isEmpty() &&!cvString.isEmpty() &&!niveauString.isEmpty()
-			DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+		if (nomString != null && prenomString != null && dateNaissanceString != null && adressePostaleString != null && addresseElecString != null && cvString != null && niveauString != null && secteursString != null ) {
+		    if(!nomString.isEmpty() && !prenomString.isEmpty() && !dateNaissanceString.isEmpty() && !adressePostaleString.isEmpty() &&!addresseElecString.isEmpty() &&!cvString.isEmpty() &&!niveauString.isEmpty()){
+			
+		    DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
 			Date today = Calendar.getInstance().getTime();
 			String dateDepotString=df.format(today);
 			
@@ -113,10 +114,13 @@
 	</table>
 
 	<%
-		}else
-		{
-			%>ERREUR<%
 		}
+
+		}
+	    else
+	{
+		%>Veuillez entrer les informations de la candidature<%
+	}
 	%>
 
 	<h2>Référencer candidature</h2>

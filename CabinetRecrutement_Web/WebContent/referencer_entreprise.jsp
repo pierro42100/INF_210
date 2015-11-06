@@ -18,7 +18,8 @@
 <%
   // Récupération du paramètre (id) passé par l'URL : http://localhost:8080/infos_entreprises.jsp?id=1
   // Attention : la valeur récupérée, même numérique, est sous la forme d'une chaîne de caractères.
-  String nomString = request.getParameter("nom");
+  String nomString = new String();
+  nomString = request.getParameter("nom");
   String descriptifString = request.getParameter("descriptif");
   String adressepostaleString = request.getParameter("adressepostale");
 %>
@@ -39,7 +40,9 @@
 </head>
 <body style="text-align: center" class="container">
 
-	<% if(!nomString.isEmpty() && !descriptifString.isEmpty() && !adressepostaleString.isEmpty()){
+	<%	if(nomString != null && descriptifString != null && adressepostaleString != null){
+		
+		if(!nomString.isEmpty() && !descriptifString.isEmpty() && !adressepostaleString.isEmpty()){
 			int id=serviceEntreprise.addEntreprise(nomString, descriptifString, adressepostaleString);
 			
 	%>
@@ -59,8 +62,9 @@
 
 	<% }
 	else{
-		%>ERREUR<%
-	}%>
+		%>Veuillez entrer les informations de l'entreprise<%
+	}
+		}%>
 
 	<h2>Referencer entreprise</h2>
 	<form action="referencer_entreprise.jsp" method="post">
