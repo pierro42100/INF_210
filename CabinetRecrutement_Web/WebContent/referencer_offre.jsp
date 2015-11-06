@@ -50,8 +50,9 @@
 </head>
 <body style="text-align: center" class="container">
 
-	<% if(titreString!=null){
-		
+	<% if(titreString!=null && descriptifString!=null && profilString!=null && idEntreprise!=null && niveauString!=null && secteursString!=null){
+		if(!titreString.isEmpty() && !descriptifString.isEmpty() && !profilString.isEmpty() && !idEntreprise.isEmpty() && !niveauString.isEmpty()){
+			
 			int id = serviceOffreEmploi.addOffreEmploi(titreString, descriptifString, profilString, secteursString, Integer.parseInt(niveauString), Integer.parseInt(idEntreprise));
 	%>
 	<table id="affichage" style="text-align: center" class="table-bordered table-striped">
@@ -82,7 +83,13 @@
 		</tr>
 	</table>
 
-	<% }%>
+	<% }
+	}
+	else{
+		%>Veuillez renseigner les informations de l'offre<% 
+	}
+		
+	%>
 
 	<h2>Référencer offre</h2>
 	<form action="referencer_offre.jsp" method="post">
