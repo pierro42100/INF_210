@@ -58,6 +58,7 @@ IServiceCandidature serviceCandidature = (IServiceCandidature) ServicesLocator
 			Entreprise e = serviceEntreprise.getEntreprise(Integer.parseInt(idString));
 			HashSet<Offreemploi> oe = (HashSet) e.getOffreemplois();
 			for (Offreemploi oeTemp : oe) {
+				HashSet<Candidature> candtotal = new HashSet<Candidature>();
 				HashSet<Secteuractivite> sect =(HashSet) oeTemp.getSecteuractivites();
 				Niveauqualif niveau =oeTemp.getNiveauqualif();
 				Set<Candidature> candNiv=niveau.getCandidatures();
@@ -75,11 +76,14 @@ IServiceCandidature serviceCandidature = (IServiceCandidature) ServicesLocator
 							for(Candidature c : cand){
 								for(Candidature ce2 : candNiv){
 									if(c.equals(ce2)){
-						%> -<%=c.getNom()%><br> <%
+						candtotal.add(c);
 									}
 								}
 							}
 					}
+				for(Candidature can : candtotal){
+					%> -<%=can.getNom()%><br> <%
+				}
 				%>
 			</td>
 			<td><a href="index.jsp">MAJ</a>/<a

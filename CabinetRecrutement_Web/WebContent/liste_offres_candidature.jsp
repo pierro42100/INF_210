@@ -72,6 +72,7 @@
 			//List<Offreemploi> oe = serviceOffreEmploi.listeDesOffresEmploi();
 
 			for (Offreemploi oeTemp : total) {
+				HashSet<Candidature> candtotal = new HashSet<Candidature>();
 				HashSet<Secteuractivite> sect =(HashSet) oeTemp.getSecteuractivites();
 				Niveauqualif niveau =oeTemp.getNiveauqualif();
 				Set<Candidature> candNiv=niveau.getCandidatures();
@@ -89,11 +90,14 @@
 									for(Candidature ce : cand){
 										for(Candidature ce2 : candNiv){
 											if(ce.equals(ce2)){
-				%> -<%=ce.getNom()%><br> <%
+				candtotal.add(ce);
  	}
  						}
  					}
  			}
+				for(Candidature can : candtotal){
+					%> -<%=can.getNom()%><br> <%
+				}
  %>
 			</td>
 		</tr>
